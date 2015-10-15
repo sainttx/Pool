@@ -86,4 +86,19 @@ public class Pool<T> {
 
         return ret;
     }
+
+    @Override
+    public int hashCode() {
+        return 31 * pooling.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Pool)) {
+            return false;
+        }
+
+        Pool<?> pool = (Pool) o;
+        return this.pooling.equals(pool.pooling);
+    }
 }
