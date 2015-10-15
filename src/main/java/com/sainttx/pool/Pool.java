@@ -54,24 +54,7 @@ public class Pool<T> {
 
         return pooling.keySet().iterator().next();
     }
-
-    /**
-     * Runs the pool 1000 times and returns the results
-     *
-     * @return The results of running the pool 1000 times
-     */
-    public Map<T, Integer> test() {
-        Map<T, Integer> ret = new HashMap<T, Integer>();
-
-        // Test 1000 times
-        for (int i = 0 ; i < 1000 ; i++) {
-            T winner = pick();
-            ret.put(winner, ret.containsKey(winner) ? ret.get(winner) + 1 : 1);
-        }
-
-        return ret;
-    }
-
+    
     /**
      * Returns the total amount of tickets inside the Pool
      *
