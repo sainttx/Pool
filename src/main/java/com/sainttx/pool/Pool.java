@@ -3,6 +3,7 @@ package com.sainttx.pool;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Created by Matthew on 01/11/2014.
@@ -39,6 +40,30 @@ public class Pool<T> {
     }
 
     /**
+     * Gets the number of tickets an object has
+     * in the pool
+     *
+     * @param t the object
+     * @return the amount of tickets the object has, will return -1 if the object is
+     * not in the pool
+     */
+    public int getTickets(T t) {
+        if (!pooling.containsKey(t)) {
+            return -1;
+        }
+        return pooling.get(t);
+    }
+
+    /**
+     * Gets all of the rewards in the pool
+     *
+     * @return a set of all rewards in the pool
+     */
+    public Set<T> getRewards() {
+        return pooling.keySet();
+    }
+
+    /**
      * Chooses an Object from the Pool
      *
      * @return The winner of the Pool
@@ -54,7 +79,7 @@ public class Pool<T> {
 
         return pooling.keySet().iterator().next();
     }
-    
+
     /**
      * Returns the total amount of tickets inside the Pool
      *
