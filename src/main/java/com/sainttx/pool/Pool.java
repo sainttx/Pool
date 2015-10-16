@@ -1,9 +1,6 @@
 package com.sainttx.pool;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Matthew on 01/11/2014.
@@ -13,7 +10,7 @@ public class Pool<T> implements Cloneable {
     /*
      * A map which contains all the values and their pool amounts
      */
-    private Map<T, Integer> pooling = new HashMap<T, Integer>();
+    private Map<T, Integer> pooling = new LinkedHashMap<T, Integer>();
 
     /**
      * A random used for picking a winner
@@ -71,6 +68,7 @@ public class Pool<T> implements Cloneable {
     public T pick() {
         int size = random.nextInt(this.getSize());
 
+        Map<T, Integer> pooling = new HashMap<>(this.pooling);
         for (Map.Entry<T, Integer> poolEntry : pooling.entrySet()) {
             if ((size -= poolEntry.getValue()) <= 0) {
                 return poolEntry.getKey();
