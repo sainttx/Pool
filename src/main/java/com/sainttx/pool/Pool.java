@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * Created by Matthew on 01/11/2014.
  */
-public class Pool<T> {
+public class Pool<T> implements Cloneable {
 
     /*
      * A map which contains all the values and their pool amounts
@@ -93,6 +93,13 @@ public class Pool<T> {
         }
 
         return ret;
+    }
+
+    @Override
+    public Pool<T> clone() {
+        Pool<T> pool = new Pool<>();
+        pool.pooling = new HashMap<>(this.pooling);
+        return pool;
     }
 
     @Override
